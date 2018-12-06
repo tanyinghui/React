@@ -28,7 +28,7 @@ const styles = theme => ({
         }),
     },
     drawerPaperClose: {
-        width: 60,
+        width: 120,
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -74,57 +74,13 @@ const MiniDrawer = (props) => {
             <Divider />
 
             <div className={classes.root}>
-                <Avatar alt="User" src="/img/avatar5.png" className={classNames(classes.avatar, classes.bigAvatar)}/>
+                <Avatar alt="User" src="/img/default-user.png" className={classNames(classes.avatar, classes.bigAvatar)}/>
                 <Typography component="p" className={classes.avatar}>
-                    John Doe
+                    Admin
                 </Typography>
-                <Typography component="span" className={classes.avatar}>
-                    john.doe@example.com
-                </Typography>
-            </div>
-            <div className="box" style={{background: '#eee', padding: '8px 16px'}}>
-                MAIN NAVIGATION
             </div>
 
-            <List>
-                <ListItem button>
-                    <ListItemIcon>
-                        <HomeIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Dashboard"/>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <PersonIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Users"/>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <LocalTaxiIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Products"/>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <NotificationsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Notifications"/>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <SettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Settings"/>
-                </ListItem>
-                <Divider/>
-                <ListItem button>
-                    <ListItemIcon>
-                        <HelpIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Help"/>
-                </ListItem>
-            </List>
+
         </Drawer>
     )
 };

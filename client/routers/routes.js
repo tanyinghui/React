@@ -12,16 +12,19 @@ import LoginForm from '../containers/auth/LoginContainer';
 import SignUpForm from '../containers/auth/SignUpContainer';
 import Dashboard from '../containers/dashboard/DashboardContainer';
 import AuthenticatedRoute from './AuthenticatedRoute';
+import ControlPage from '../containers/dashboard/ControlContainer';
+import ControlRoute from './ControlRoute';
 
 const Router = () => (
     <ConnectedRouter history={history}>
         <Switch>
-            <Route exact path="/" component={LoginForm}/>
+            <Route exact path="/" component={Dashboard}/>
             <Route path="/signup" component={SignUpForm}/>
 
             <MainLayout>
                 <Switch>
-                    <AuthenticatedRoute path="/dashboard" component={Dashboard}/>
+                    <AuthenticatedRoute path="/dashboard" component={LoginForm}/>
+                    //<ControlRoute path="/control" component={ControlPage}/>
                 </Switch>
             </MainLayout>
 

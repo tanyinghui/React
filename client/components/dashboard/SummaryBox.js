@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import {grey} from '@material-ui/core/colors';
 import Paper from '@material-ui/core/Paper';
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
     root: {
         padding: '5px 10px',
         marginLeft: 90,
-        height: 80
+        height: 600
     },
     number: {
         display: 'block',
@@ -31,11 +32,15 @@ const styles = theme => ({
         marginTop: 20,
         maxWidth: '100%'
 
+    },
+    btn: {
+        textAlign: 'center'
     }
+
 });
 
 const SummaryBox = props => {
-    const {classes, color, title, value, Icon} = props;
+    const {classes, color, title, value, Icon, buttonlabel} = props;
     return (
         <Paper>
         <span className={classes.iconSpan} style={{backgroundColor: color}}>
@@ -45,6 +50,7 @@ const SummaryBox = props => {
             <div className={classes.root}>
                 <span className={classes.text}>{title}</span>
                 <span className={classes.number}>{value}</span>
+                <Button className={classes.btn} type="submit" variant="raised" color="primary">{buttonlabel}</Button>
             </div>
         </Paper>
     )

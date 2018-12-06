@@ -61,7 +61,6 @@ const SignUpForm = props => {
                             name="last_name"
                             component={renderText}
                             label="Last Name"
-
                         />
                         <br />
                         <Field
@@ -76,7 +75,6 @@ const SignUpForm = props => {
                             name="password"
                             component={renderText}
                             label="Password"
-
                         />
                         <br />
                         <div className={classes.btnDiv}>
