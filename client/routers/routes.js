@@ -11,20 +11,20 @@ import NotFound from '../components/error/NotFound';
 import LoginForm from '../containers/auth/LoginContainer';
 import SignUpForm from '../containers/auth/SignUpContainer';
 import Dashboard from '../containers/dashboard/DashboardContainer';
+import MainUI from '../containers/main/MainUIContainer';
+
 import AuthenticatedRoute from './AuthenticatedRoute';
-import ControlPage from '../containers/dashboard/ControlContainer';
-import ControlRoute from './ControlRoute';
 
 const Router = () => (
     <ConnectedRouter history={history}>
         <Switch>
-            <Route exact path="/" component={Dashboard}/>
+            <Route exact path="/" component={LoginForm}/>
             <Route path="/signup" component={SignUpForm}/>
+            <Route path="/mainui" component={MainUI}/>
 
             <MainLayout>
                 <Switch>
-                    <AuthenticatedRoute path="/dashboard" component={LoginForm}/>
-                    //<ControlRoute path="/control" component={ControlPage}/>
+                    <AuthenticatedRoute path="/dashboard" component={Dashboard}/>
                 </Switch>
             </MainLayout>
 
