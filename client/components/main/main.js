@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import {cyan, purple, orange} from '@material-ui/core/colors';
 import NumPad from 'react-numpad';
-import ReactPlayer from 'react-player'
-
 
 const styles = theme => ({
     body: {
@@ -17,7 +15,8 @@ const styles = theme => ({
         fontSize: 24,
         backgroundColor: cyan[600],
         color: '#FFFFFF'
-    }
+    },
+
 });
 
 const myTheme = {
@@ -40,14 +39,20 @@ const myTheme = {
 
 class mainUI extends React.Component {
 
+    constructor (props) {
+        super(props);
 
+        this.state = {
+            videoURL: "/swagger/AdobeStock_185506961_Video_4K_Preview.mov"
+        }
+    }
 
     render() {
    //     const { classes } = this.props;
    //     const { value } = this.state;
 
     return (
-       <div class='videobody'>
+       <div className='videobody'>
             <NumPad.Number
             onChange={(value) => { console.log('value', value)}}
             theme={myTheme}
@@ -55,7 +60,11 @@ class mainUI extends React.Component {
 
             </NumPad.Number>
 
-            <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' playing />
+            <video id="backgroundvideo" loop autoPlay>
+                <source src={this.state.videoURL} type="video/mp4" />
+                <source src={this.state.videoURL} type="video/ogg" />
+                Your browser does not support the video tag.
+            </video>
         </div>
     )
 };
