@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -22,7 +21,7 @@ const styles = () => ({
   card: {
     padding: 2,
     height: 350,
-    opacity: 0.8
+    opacity: 0.85
     }, 
   textField: {
     width: 400,
@@ -167,38 +166,25 @@ const styles = () => ({
   },
 });
 
-const keyboards = [
-  {
-    width: 40,
-    height: 40,
-    position: 'absolute',
-    top: '63%',
-    left: 146,
-    right: 0,
-    margin: 'auto',
-    value: '0',
-    label: '0'
-  }
-]; 
-
-
-
 // class mainUI
 class mainUI extends React.Component {
-  state = {
-     phonenumber: '2',
+
+  handleClick = event => {
+    var value = event.currentTarget.value;
+    this.setState({
+       value: this.state.value + value
+     });
   };
 
-   handleChange = name => event => {
+  clear = () => {
     this.setState({
-      [name]: event.target.value,
+      value: ''
     });
   };
 
-  handleClick = (event) => {
-    alert('hello');
+  backspace = () => {
     this.setState({
-      phonenumber: event.target.value
+      value: this.state.value.slice(0, -1)
     });
   };
 
@@ -208,6 +194,10 @@ class mainUI extends React.Component {
       videoURL: '/swagger/PATAGONIA 8K.mkv',
       height: '100%',
       weight: '100%'
+    };
+
+    this.state = {
+      value: '',
     };
   }
 
@@ -237,47 +227,69 @@ class mainUI extends React.Component {
               className={classes.textField}
               margin="normal"
               variant="outlined"
-              value={this.state.phonenumber}
-              onChange={this.handleChange('phonenumber')}
-            >
-
-
-            </TextField>
-            <div>
-      <Button variant="contained" size="medium" className={classes.button1}>
+              value={this.state.value}
+            />
+          <div>
+      <Button 
+        variant="contained" size="medium" className={classes.button1} 
+        value="1" onClick = {this.handleClick} 
+      >
         1
       </Button>
-      <Button variant="contained" size="medium" className={classes.button2}>
+      <Button 
+        variant="contained" size="medium" className={classes.button2}
+        value="4" onClick = {this.handleClick}
+      >
         4
       </Button>
-      <Button variant="contained" size="medium" className={classes.button3}>
+      <Button variant="contained" size="medium" className={classes.button3}
+        value="7" onClick = {this.handleClick}
+      >
         7
       </Button>
-      <Button variant="contained" size="medium" className={classes.button4}>
+      <Button variant="contained" size="medium" className={classes.button4}
+        value="2" onClick = {this.handleClick}
+      >
         2
       </Button>
-      <Button variant="contained" size="medium" className={classes.button5}>
+      <Button variant="contained" size="medium" className={classes.button5}
+       value="5" onClick = {this.handleClick} 
+      >
         5
       </Button>
-      <Button variant="contained" size="medium" className={classes.button6}>
+      <Button variant="contained" size="medium" className={classes.button6}
+        value="8" onClick = {this.handleClick}
+      >
         8
       </Button>
-      <Button variant="contained" size="medium" className={classes.button7}>
+      <Button variant="contained" size="medium" className={classes.button7}
+        value="3" onClick = {this.handleClick}
+      >
         3
       </Button>
-      <Button variant="contained" size="medium" className={classes.button8}>
+      <Button variant="contained" size="medium" className={classes.button8}
+        value="6" onClick = {this.handleClick}
+      >
         6
       </Button>
-      <Button variant="contained" size="medium" className={classes.button9}>
+      <Button variant="contained" size="medium" className={classes.button9}
+        value="9" onClick = {this.handleClick}
+      >
         9
       </Button>
-      <Button variant="contained" size="medium" className={classes.button10}>
+      <Button variant="contained" size="medium" className={classes.button10}
+        value="0" onClick = {this.handleClick}
+      >
         0
       </Button>
-      <Button variant="contained" size="medium" className={classes.button11}>
+      <Button variant="contained" size="medium" className={classes.button11}
+        onClick = {this.clear}
+      >
         CLEAR
       </Button>
-      <Button variant="contained" size="medium" className={classes.button12}>
+      <Button variant="contained" size="medium" className={classes.button12}
+        onClick = {this.backspace}
+      >
         <BackspaceIcon size="small"/>
       </Button>
     </div>
@@ -295,59 +307,3 @@ mainUI.propTypes = {
 };
 
 export default withStyles(styles)(mainUI);
-
-
-
-
-/*
-function Buttons(props) {
-  // eslint-disable-next-line react/prop-types
-  const { classes } = props;
-  
-return (
-    <div>
-      <Button variant="contained" size="medium" className={classes.button1}>
-        1
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button2}>
-        4
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button3}>
-        7
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button4}>
-        2
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button5}>
-        5
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button6}>
-        8
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button7}>
-        3
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button8}>
-        6
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button9}>
-        9
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button10}>
-        0
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button11}>
-        CLEAR
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button12}>
-        <BackspaceIcon size="small"/>
-      </Button>
-    </div>
-  );
-}
-
-Buttons.PropTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Buttons); */
