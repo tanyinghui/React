@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
-import { Card, CardContent } from '@material-ui/core';
-import BackspaceIcon from '@material-ui/icons/Backspace';
+import { Card, CardContent, InputAdornment } from '@material-ui/core';
+import BackspaceIcon from '@material-ui/icons/backspace';
+import DoneIcon from '@material-ui/icons/done';
 
 
 const styles = () => ({
@@ -176,16 +178,26 @@ class mainUI extends React.Component {
      });
   };
 
+  del = () => {
+    this.setState({
+      value: this.state.value.slice(0, -1)
+    });
+    this.buttonPressTimer = setTimeout(this.clear, 1000);
+  };
+
   clear = () => {
     this.setState({
       value: ''
     });
   };
 
-  backspace = () => {
-    this.setState({
-      value: this.state.value.slice(0, -1)
-    });
+  stopTimer = () => {
+    clearTimeout(this.buttonPressTimer);
+  }
+
+  done = () => {
+    let final = this.state.value;
+    alert(final);
   };
 
   constructor(props) {
@@ -199,6 +211,12 @@ class mainUI extends React.Component {
     this.state = {
       value: '',
     };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.done = this.done.bind(this);
+    this.clear = this.clear.bind(this);
+    this.del = this.del.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
   }
 
   render() {
@@ -228,71 +246,83 @@ class mainUI extends React.Component {
               margin="normal"
               variant="outlined"
               value={this.state.value}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Submit"
+                      onClick={this.done}
+                    >
+                      {<DoneIcon/>}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
-          <div>
-      <Button 
-        variant="contained" size="medium" className={classes.button1} 
-        value="1" onClick = {this.handleClick} 
-      >
-        1
-      </Button>
-      <Button 
-        variant="contained" size="medium" className={classes.button2}
-        value="4" onClick = {this.handleClick}
-      >
-        4
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button3}
-        value="7" onClick = {this.handleClick}
-      >
-        7
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button4}
-        value="2" onClick = {this.handleClick}
-      >
-        2
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button5}
-       value="5" onClick = {this.handleClick} 
-      >
-        5
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button6}
-        value="8" onClick = {this.handleClick}
-      >
-        8
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button7}
-        value="3" onClick = {this.handleClick}
-      >
-        3
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button8}
-        value="6" onClick = {this.handleClick}
-      >
-        6
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button9}
-        value="9" onClick = {this.handleClick}
-      >
-        9
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button10}
-        value="0" onClick = {this.handleClick}
-      >
-        0
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button11}
-        onClick = {this.clear}
-      >
-        CLEAR
-      </Button>
-      <Button variant="contained" size="medium" className={classes.button12}
-        onClick = {this.backspace}
-      >
-        <BackspaceIcon size="small"/>
-      </Button>
-    </div>
+            <div>
+              <Button 
+                variant="contained" size="medium" className={classes.button1} 
+                value="1" onClick = {this.handleClick} 
+              >
+                1
+              </Button>
+              <Button 
+                variant="contained" size="medium" className={classes.button2}
+                value="4" onClick = {this.handleClick}
+              >
+                4
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button3}
+                value="7" onClick = {this.handleClick}
+              >
+                7
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button4}
+                value="2" onClick = {this.handleClick}
+              >
+                2
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button5}
+              value="5" onClick = {this.handleClick} 
+              >
+                5
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button6}
+                value="8" onClick = {this.handleClick}
+              >
+                8
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button7}
+                value="3" onClick = {this.handleClick}
+              >
+                3
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button8}
+                value="6" onClick = {this.handleClick}
+              >
+                6
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button9}
+                value="9" onClick = {this.handleClick}
+              >
+                9
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button10}
+                value="0" onClick = {this.handleClick}
+              >
+                0
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button11}
+                value="+"onClick = {this.handleClick}
+              >
+                +
+              </Button>
+              <Button variant="contained" size="medium" className={classes.button12}
+                onMouseDown = {this.del} onMouseUp = {this.stopTimer}
+              >
+                <BackspaceIcon size="small"/>
+              </Button>
+            </div>
           </div>  
           </CardContent>              
         </Card>
