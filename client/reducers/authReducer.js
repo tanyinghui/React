@@ -1,15 +1,13 @@
-// Import custom components
-import {LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_OUT_SUCCESS} from '../constants/actionType';
+import { LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_OUT_SUCCESS } from '../constants/actionType';
 
 var initialState = {
     token: null,
     isAuthenticated: false,
-    isLoading: false
+    isLoading: false,
 };
 
-/**
- * A reducer takes two arguments, the current state and an action.
- */
+// Reducer will take 2 arguments, which are current state and action.
+
 export default function (state, action) {
     state = state || initialState;
 
@@ -20,13 +18,13 @@ export default function (state, action) {
                 isLoading: false,
                 token: action.data,
             });
-
+        
         case LOG_IN_FAILURE:
             return Object.assign({}, state, {
                 isAuthenticated: false,
                 isLoading: false,
                 token: null,
-                errorMessage: action.error.message || 'Something went wrong.'
+                errorMessage: action.error.message || 'Something went wrong.',
             });
 
         case LOG_OUT_SUCCESS:
@@ -35,8 +33,8 @@ export default function (state, action) {
                 isLoading: true,
                 token: null,
             });
-
-        default:
-            return state;
+        
+            default:
+                return state;
     }
 }

@@ -1,4 +1,3 @@
-// Import actionType constants
 import {
     LOG_IN_SUCCESS,
     LOG_IN_FAILURE,

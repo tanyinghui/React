@@ -10,22 +10,15 @@ import {verifyToken} from './actions/tokenAction';
 import App from './containers/app/AppContainer';
 
 const mountNode = document.getElementById('root');
-const theme = createMuiTheme({
-    palette: {
-        primary: blueGrey
-    }
-});
 
 // Used to log in if token is valid
 store.dispatch(verifyToken());
 
 const renderApp = (Component) => {
     ReactDOM.render(
-        <MuiThemeProvider theme={theme}>
-            <Provider store={store}>
-                <Component />
-            </Provider>
-        </MuiThemeProvider>,
+        <Provider store={store}>
+            <Component />
+        </Provider>,
         mountNode
     );
 };

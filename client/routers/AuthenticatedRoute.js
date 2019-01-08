@@ -1,7 +1,7 @@
 import React from 'react';
-import {Route, Redirect} from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
-import {getToken} from '../utils/storageUtil'
+import { getToken } from '../utils/storageUtil';
 
 const isAuthenticated = () => {
     return !!getToken();

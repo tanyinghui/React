@@ -1,36 +1,21 @@
 import React from 'react';
 
 // Import routing components
-import {Route, Switch} from 'react-router-dom';
-import {ConnectedRouter} from 'react-router-redux';
+import { Router , Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 import history from '../utils/history';
 
 // Import custom components
-import MainLayout from '../components/common/layout/MainLayout';
+import MainLayout from '../components/main/MainLayout';
 import NotFound from '../components/error/NotFound';
-import LoginForm from '../containers/auth/LoginContainer';
-import SignUpForm from '../containers/auth/SignUpContainer';
-import Dashboard from '../containers/dashboard/DashboardContainer';
-import MainUI from '../containers/main/MainUIContainer';
+// import AuthenticatedRoute from './AuthenticatedRoute';
 
-import AuthenticatedRoute from './AuthenticatedRoute';
-
-const Router = () => (
-    <ConnectedRouter history={history}>
-        <Switch>
-            <Route exact path="/" component={LoginForm}/>
-            <Route path="/signup" component={SignUpForm}/>
-            <Route path="/mainui" component={MainUI}/>
-
-            <MainLayout>
-                <Switch>
-                    <AuthenticatedRoute path="/dashboard" component={Dashboard}/>
-                </Switch>
-            </MainLayout>
-
-            <Route component={NotFound}/>
-        </Switch>
-    </ConnectedRouter>
+const MainRouter = () => (
+        <Router history={history}>
+            <Switch>
+                <Route path="/" component={MainLayout}/>  
+            </Switch>
+        </Router>
 );
 
-export default Router;
+export default MainRouter;

@@ -1,4 +1,3 @@
-// Import custom utils
 import {fetch, store, update, destroy} from '../utils/httpUtil';
 import {getPathParam, getQueryParam} from '../utils/serializeUtil';
 

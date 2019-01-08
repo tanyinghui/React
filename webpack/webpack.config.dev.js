@@ -1,10 +1,10 @@
-'use strict';
-const webpack = require('webpack');
+'use strict'; // cannot use undeclared variables 
 const path = require('path');
+const webpack = require('webpack');
 
 /*
- * so process.cwd() is used instead to determine the correct base directory
- * Read more: https://nodejs.org/api/process.html#process_process_cwd
+ * process.cwd() is used to determine the correct base directory.
+ * Reference: https://nodejs.org/api/process.html#process_process_cwd
  */
 const CURRENT_WORKING_DIR = process.cwd();
 
@@ -12,39 +12,45 @@ const config = {
     context: path.resolve(CURRENT_WORKING_DIR, 'client'),
     entry: {
         app: [
-            'webpack-hot-middleware/client', // bundle the client for hot reloading
-            './main.js'  // the entry point of app
+            'webpack-hot-middleware/client', //bundle for hot reloading purpose
+            './main.js' //entry point of project
         ]
     },
     mode: 'development',
-    output: {
-        path: path.resolve(CURRENT_WORKING_DIR, 'dist'), //  destination
-        filename: 'client.bundle.js',
-        publicPath: '/dist/'
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(), // enable HMR globally
-        new webpack.NoEmitOnErrorsPlugin(),  // do not emit compiled assets that include errors
-    ],
     module: {
         rules: [
-            {
-                test: /\.(js|jsx)$/, //check for all js files
+            { //To transform all ES6 and JSX syntax
+                test: /\.(js|jsx)$/, //checking all JS files
                 exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 options: {
                     babelrc: false,
-                    presets: ['@babel/preset-env', '@babel/preset-react'],
-                    // This is a feature of `babel-loader` for webpack (not Babel itself).
-                    // It enables caching results in ./node_modules/.cache/babel-loader/
-                    // directory for faster rebuilds.
+                    presets: [
+                        '@babel/preset-env', 
+                        '@babel/preset-react'
+                    ],
                     cacheDirectory: true,
-                    plugins: ['react-hot-loader/babel', '@babel/plugin-proposal-function-bind', '@babel/plugin-proposal-class-properties'],
-                },
+                    // babel-loader enables cahing results 
+                    // in ./node_modules/.cache/babel-loader/
+                    // for faster rebuilds
+                    plugins: [
+                        'react-hot-loader/babel', 
+                        '@babel/plugin-proposal-function-bind',
+                        '@babel/plugin-proposal-class-properties'
+                    ]
+                }
             }
         ]
     },
-    devtool: "inline-source-map"
+    output: {
+        path: path.resolve(CURRENT_WORKING_DIR, 'dist'), 
+        filename: 'client.bundle.js',
+        publicPath: '/dist/'
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(), // enable HMR
+        new webpack.NoEmitOnErrorsPlugin() // skip emitting phase when there're errors while compiling
+    ],
 };
 
 module.exports = config;

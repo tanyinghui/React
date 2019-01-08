@@ -23,36 +23,19 @@ const router = express.Router();
  *         type: integer
  *         description: Unique identifier representing a specific user
  *         example: 2
- *       first_name:
+ *       phone:
  *         type: string
- *         description: first name of the user
- *         example: Krishna
- *       last_name:
- *         type: string
- *         description: last name of the user
- *         example: Timilsina
- *       email:
- *         type: string
- *         description: email of the user
+ *         description: phone of the user
  *         required: true
- *         example: test@gmail.com
- *       password:
+ *         example: 12345678
+ *       activity:
  *         type: string
- *         description: password of the user
- *         required: true
- *         example: "1234"
- *       status:
- *         type: integer
- *         description: status of the user
- *         example: 1
+ *         description: activity of the user
+ *         example: deposit
  *       created_at:
  *         type: string
  *         format: date-time
  *         description: User creation datetime
- *       updated_at:
- *         type: string
- *         format: date-time
- *         description: User update datetime
  *   Error:
  *     type: object
  *     properties:
@@ -148,26 +131,26 @@ router.route('/')
     });
 
 
-router.route('/:id')
+router.route('/:phone')
 
 /**
  * @swagger
- * /users/{id}:
+ * /users/{phone}:
  *   get:
  *     tags:
  *       - user
- *     summary: Find the user by ID
- *     operationId: findById
+ *     summary: Find the user by phone
+ *     operationId: findByPhone
  *     consumes:
  *       - application/json
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: id
+ *       - name: phone
  *         in: path
- *         description: id of user that needs to be fetched
+ *         description: phone of user that needs to be fetched
  *         required: true
- *         type: integer
+ *         type: string
  *     responses:
  *       200:
  *         description: OK
@@ -180,7 +163,7 @@ router.route('/:id')
  */
 
     .get( (req, res) => {
-        userCtrl.findById(req, res);
+        userCtrl.findByPhone(req, res);
     })
 
     /**

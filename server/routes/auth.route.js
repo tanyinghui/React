@@ -16,18 +16,15 @@ const router = express.Router();
  *   Login:
  *     type: object
  *     properties:
- *       email:
+ *       phone:
  *         type: string
- *         example: test@gmail.com
- *       password:
- *         type: string
- *         example: "1234"
+ *         example: 12345678
  *   Token:
  *    type: object
  *    properties:
- *      email:
+ *      phone:
  *        type: string
- *        example: test@gmail.com
+ *        example: 12345678
  *      token:
  *        type: string
  *        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE1MDk5ODg2NDZ9.1zTKAzXmuyQDHw4uJXa324fFS1yZwlriFSppvK6nOQY
@@ -39,7 +36,6 @@ const router = express.Router();
  *         error:
  *            type: boolean
  *            default: true
- *
  */
 
 /**
@@ -67,7 +63,7 @@ const router = express.Router();
  *         schema:
  *            $ref: '#/definitions/Token'
  *       400:
- *         description: Invalid username/password
+ *         description: Invalid phone
  *         schema:
  *            $ref: '#/definitions/Error'
  *       404:

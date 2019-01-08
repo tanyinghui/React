@@ -25,8 +25,8 @@ export default (req, res, next) => {
                 res.status(HttpStatus.UNAUTHORIZED).json({error: 'You are not authorized to perform this operation!'});
             } else {
                 User.query({
-                    where: {id: decoded.id},
-                    select: ['email', 'id']
+                    where: {phone: decoded.phone},
+                    select: ['phone', 'id']
                 }).fetch().then(user => {
                     if (!user) {
                         res.status(HttpStatus.NOT_FOUND).json({error: 'No such user'});

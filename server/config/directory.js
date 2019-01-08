@@ -1,4 +1,4 @@
-var path = require('path');
+var path = require ('path');
 var rootPath = path.normalize(__dirname + '/../..');
 
 const directory = {
@@ -8,4 +8,3 @@ const directory = {
 };
 
 export default directory;
-

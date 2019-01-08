@@ -6,7 +6,7 @@ import {USERS} from '../../constants/entity'
 import * as crudAction from '../../actions/crudAction'
 
 // Import custom components
-import SignUpForm from '../../components/auth/SignUpForm';
+import MainLayout from '../../components/main/MainLayout';
 
 class SignUpContainer extends Component {
 

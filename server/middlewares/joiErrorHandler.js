@@ -21,8 +21,10 @@ export default (err, req, res, next) => {
                 };
             })
         };
-        return res.status(HttpStatus.BAD_REQUEST).json(error);
+        
+return res.status(HttpStatus.BAD_REQUEST).json(error);
     }
     // If this isn't a Joi error, send it to the next error handler
+    // eslint-disable-next-line newline-before-return
     return next(err);
 };

@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import HttpStatus from 'http-status-codes';
 import User from '../models/user.model';
 
@@ -24,14 +23,14 @@ export function findAll(req, res) {
 }
 
 /**
- *  Find user by id
+ *  Find user by phone
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
-export function findById(req, res) {
-    User.forge({id: req.params.id})
+export function findByPhone(req, res) {
+    User.forge({phone: req.params.phone})
         .fetch()
         .then(user => {
             if (!user) {
@@ -60,12 +59,16 @@ export function findById(req, res) {
  * @returns {*}
  */
 export function store(req, res) {
-    const {first_name, last_name, email} = req.body;
-    const password = bcrypt.hashSync(req.body.password, 10);
+    // eslint-disable-next-line camelcase
+    const {phone} = req.body;
+     console.log('phone number = ' + phone)
+     console.log('request = ' + req)
+     console.log(req)
 
-    User.forge({
-        first_name, last_name, email, password
-    }, {hasTimestamps: true}).save()
+     console.log('request body = ' + req.body)
+     console.log(req.body)
+
+    User.forge({phone}, {hasTimestamps: true}).save()
         .then(user => res.json({
                 success: true,
                 data: user.toJSON()
@@ -88,9 +91,7 @@ export function update(req, res) {
     User.forge({id: req.params.id})
         .fetch({require: true})
         .then(user => user.save({
-                first_name: req.body.first_name || user.get('first_name'),
-                last_name: req.body.last_name || user.get('last_name'),
-                email: req.body.email || user.get('email')
+                phone: req.body.phone || user.get('phone')
             })
                 .then(() => res.json({
                         error: false,

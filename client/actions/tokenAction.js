@@ -1,4 +1,4 @@
-import {getToken} from '../utils/storageUtil';
+import { getToken } from '../utils/storageUtil';
 import * as AuthAction from './authAction';
 
 export function verifyToken() {
@@ -6,6 +6,6 @@ export function verifyToken() {
         const token = getToken();
         if (token) {
             dispatch(AuthAction.loginSuccess(token));
-        }
+        };
     };
 }

@@ -6,15 +6,12 @@
  */
 exports.up = function(knex) {
     console.log('generating users table');
-    return knex.schema.createTable('users', table => {
-        table.increments('id').primary().unsigned();
-        table.string('first_name').notNullable();
-        table.string('last_name').notNullable();
-        table.string('email').notNullable();
-        table.string('password').notNullable();
-        table.bool('status').default(false);
+    
+return knex.schema.createTable('users', table => {
         table.timestamp('created_at');
-        table.timestamp('updated_at');
+        table.increments('id').primary().unsigned();
+        table.string('phone').notNullable();
+        table.string('activity').notNullable();
     });
 };
 
@@ -26,5 +23,6 @@ exports.up = function(knex) {
  */
 exports.down = function(knex) {
     console.log('dropping users table');
-    return knex.schema.dropTable('users');
+    
+return knex.schema.dropTable('users');
 };

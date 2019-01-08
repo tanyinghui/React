@@ -11,10 +11,7 @@ class User extends bookshelf.Model {
     get hasTimestamps() {
         return true;
     }
-
-    verifyPassword(password) {
-        return this.get('password') === password;
-    }
+    
 }
 
 export default User;
