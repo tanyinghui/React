@@ -229,7 +229,7 @@ class MainForm extends Component {
                             <Button variant="contained" className={classes.button0} onClick = {this.handleClick} value="0">0</Button>
                             <Button variant="contained" className={classes.buttonPlus} onClick = {this.handleClick} value="+">+</Button>
                             <Button variant="contained" className={classes.buttonDel}
-                                onMouseDown = {this.del} onMouseUp = {this.stopTimer}
+                                onTouchStart = {this.del} onTouchEnd = {this.stopTimer}
                             >
                                 <BackspaceIcon size="small"/>
                             </Button>

@@ -6,10 +6,9 @@ import { USERS } from '../../constants/entity';
 import * as crudAction from '../../actions/crudAction';
 
 // Import custom components
-import Background from '../background/Background';
 import MainForm from '../common/MainForm';
 
-class MainLayout extends Component {
+class DeliverLayout extends Component {
 
     constructor(props) {
         super(props);
@@ -24,7 +23,6 @@ class MainLayout extends Component {
     render() {
         return(
             <div>
-                <Background />
                 <MainForm onSubmit={this.submitForm} />
             </div>
         )
@@ -35,4 +33,4 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
 })
 
-export default connect(null, mapDispatchToProps)(MainLayout);
+export default connect(null, mapDispatchToProps)(DeliverLayout);
