@@ -7,8 +7,10 @@ import Background from '../../components/background/Background';
 class AppContainer extends Component {
     render() {
         return (
-            <Background/>
-            <MainRouter/>
+            <div>
+                <Background />
+                <MainROuter />
+            </div>
         );
     }
 }
