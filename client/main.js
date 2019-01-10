@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
-import {blueGrey} from '@material-ui/core/colors';
+// import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+// import {blueGrey} from '@material-ui/core/colors';
 
 // Import custom components
 import store from './store/store';

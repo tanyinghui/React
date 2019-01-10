@@ -22,9 +22,9 @@ const renderText = ({
 );
 
 renderText.propTypes = {
-    input: PropTypes.string.isRequired,
+    input: PropTypes.object.isRequired,
     label: PropTypes.string.isRequired,
-    meta: PropTypes.string
+    meta: PropTypes.object
 };
 
 export default renderText;

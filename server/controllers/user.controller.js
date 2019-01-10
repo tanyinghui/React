@@ -61,12 +61,12 @@ export function findByPhone(req, res) {
 export function store(req, res) {
     // eslint-disable-next-line camelcase
     const {phone} = req.body;
-     console.log('phone number = ' + phone)
-     console.log('request = ' + req)
-     console.log(req)
+    //  console.log('phone number = ' + phone)
+    //  console.log('request = ' + req)
+    //  console.log(req)
 
-     console.log('request body = ' + req.body)
-     console.log(req.body)
+    //  console.log('request body = ' + req.body)
+    //  console.log(req.body)
 
     User.forge({phone}, {hasTimestamps: true}).save()
         .then(user => res.json({

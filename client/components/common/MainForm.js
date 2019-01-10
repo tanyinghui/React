@@ -11,14 +11,12 @@ import { Card, CardContent, InputAdornment } from '@material-ui/core'
 
 // Import custom component
 import renderText from './renderText';
-// import Keypad from './keypad/Keypad';
-// import Buttons from './keypad/Buttons';
 
 const styles = {
     card: {
         padding: 2,
         width: 450,
-        height: 400,
+        height: 380,
         position: 'absolute',
         top: '40%',
         left: 0,
@@ -157,25 +155,20 @@ class MainForm extends Component {
     };
 
     del = () => {
-        this.setState({
-            value: this.state.value.slice(0, -1)
+        this.setState({value: this.state.value.slice(0, -1)}, () => {
+            this.props.change("phone", this.state.value);
         });
-        this.buttonPressTImer = setTimeout(this.clear, 500);
+        this.buttonPressTimer = setTimeout(this.clear, 500);
     };
 
     clear = () => {
-        this.setState({
-            value: ''
+        this.setState({value: ''}, () => {
+            this.props.change("phone", this.state.value);
         });
     };
 
     stopTimer = () => {
         clearTimeout(this.buttonPressTimer);
-    };
-
-    done = () => {
-        let final = this.state.value;
-        alert(final);
     };
 
     constructor(props) {
@@ -184,7 +177,6 @@ class MainForm extends Component {
             value: '',
         };
         this.handleClick = this.handleClick.bind(this);
-        this.done = this.done.bind(this);
         this.clear = this.clear.bind(this);
         this.del = this.del.bind(this);
         this.stopTimer = this.stopTimer.bind(this);
@@ -210,8 +202,7 @@ class MainForm extends Component {
                                 name="phone"
                                 component={renderText}
                                 className={classes.textField}
-                                handleChange={this.handleClick}
-                                controlledValue={this.state.value}
+                                value={this.state.value}
                                 InputProps={{
                                     endAdornment: (
                                         <InputAdornment position="end">
@@ -237,7 +228,11 @@ class MainForm extends Component {
                             <Button variant="contained" className={classes.button9} onClick = {this.handleClick} value="9">9</Button>
                             <Button variant="contained" className={classes.button0} onClick = {this.handleClick} value="0">0</Button>
                             <Button variant="contained" className={classes.buttonPlus} onClick = {this.handleClick} value="+">+</Button>
-                            <Button variant="contained" className={classes.buttonDel}><BackspaceIcon size="small"/></Button>
+                            <Button variant="contained" className={classes.buttonDel}
+                                onMouseDown = {this.del} onMouseUp = {this.stopTimer}
+                            >
+                                <BackspaceIcon size="small"/>
+                            </Button>
                         </div>
                     </div>
                 </CardContent>
