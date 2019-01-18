@@ -1,72 +1,17 @@
 import HttpStatus from 'http-status-codes';
 import User from '../models/user.model';
+import Deliver from '../models/transaction.model';
+import Box from '../models/box_status.model'
 
 /**
- * Find all the users
+ * Store new customer into table "customer"
  *
  * @param {object} req
  * @param {object} res
  * @returns {*}
  */
-export function findAll(req, res) {
-    User.forge()
-        .fetchAll()
-        .then(user => res.json({
-                error: false,
-                data: user.toJSON()
-            })
-        )
-        .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-                error: err
-            })
-        );
-}
-
-/**
- *  Find user by phone
- *
- * @param {object} req
- * @param {object} res
- * @returns {*}
- */
-export function findByPhone(req, res) {
-    User.forge({phone: req.params.phone})
-        .fetch()
-        .then(user => {
-            if (!user) {
-                res.status(HttpStatus.NOT_FOUND).json({
-                    error: true, data: {}
-                });
-            }
-            else {
-                res.json({
-                    error: false,
-                    data: user.toJSON()
-                });
-            }
-        })
-        .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-                error: err
-            })
-        );
-}
-
-/**
- * Store new user
- *
- * @param {object} req
- * @param {object} res
- * @returns {*}
- */
-export function store(req, res) {
-    // eslint-disable-next-line camelcase
+export function storePhone(req, res) {
     const {phone} = req.body;
-    //  console.log('phone number = ' + phone)
-    //  console.log('request = ' + req)
-    //  console.log(req)
-
-    //  console.log('request body = ' + req.body)
-    //  console.log(req.body)
 
     User.forge({phone}, {hasTimestamps: true}).save()
         .then(user => res.json({
@@ -75,65 +20,105 @@ export function store(req, res) {
             })
         )
         .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-                error: err
+                error: err,
             })
         );
 }
 
-/**
- * Update user by id
- *
- * @param {object} req
- * @param {object} res
- * @returns {*}
- */
-export function update(req, res) {
-    User.forge({id: req.params.id})
-        .fetch({require: true})
-        .then(user => user.save({
-                phone: req.body.phone || user.get('phone')
-            })
-                .then(() => res.json({
-                        error: false,
-                        data: user.toJSON()
-                    })
-                )
-                .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-                        error: true,
-                        data: {message: err.message}
-                    })
-                )
-        )
-        .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-                error: err
-            })
-        );
-}
-
-/**
- * Destroy user by id
- *
- * @param {object} req
- * @param {object} res
- * @returns {*}
- */
-export function destroy(req, res) {
-    User.forge({id: req.params.id})
-        .fetch({require: true})
-        .then(user => user.destroy()
-            .then(() => res.json({
-                    error: false,
-                    data: {message: 'User deleted successfully.'}
-                })
-            )
+export function check(req, res) {
+    const {phone} = req.body;
+    User.query({
+        where: {phone: phone},
+    }).fetch().then(user => {
+        if (user) {
+            User
+            .where({phone:phone})
+            .save({updated_at: new Date()},{patch:true})
             .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-                    error: true,
-                    data: {message: err.message}
-                })
-            )
+            error: err})
+            );
+
+        } else {
+            storePhone(req, res);
+        }
+    });
+}
+
+export function storeDeliverer(req, res) {
+    const {deliverer} = req.body;
+
+    Deliver.forge({deliverer}, {hasTimestamps: true}).save()
+        .then(deliver => res.json({
+                success: true,
+                data: deliver.toJSON()
+            })
         )
         .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-                error: err
+                error: err,
             })
         );
+}
+
+export function storeReceipentA(req, res) {
+    const {receipent, deliverer} = req.body;
+
+    Deliver.query({
+        where: {deliverer: deliverer},
+    }).fetch().then(deliver => {
+        if (deliver) {
+            Deliver
+            .where({deliverer: deliverer})
+            .save({receipent: receipent, updated_at: new Date()},{patch:true})
+            .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                error: err})
+            );
+        } else {
+            console.log('Undefined action.')
+        }
+    });
+}
+
+export function storeBoxReceipentA(req, res) {
+    const {receipent} = req.body;
+
+    Box.query({
+        where: {receipent: receipent},
+    }).fetch().then(box => {
+        if (box) {
+            console.log('Box is found')
+        } else {
+            Box.forge({receipent}, {hasTimestamps: true}).save()
+                .then(box => res.json({
+                        success: true,
+                        data: box.toJSON()
+                    })
+                )
+            .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+                    error: err,
+                })
+            );
+        }
+    });
+}
+
+export function checkBoxData(req, res) {
+    let str1 = '';
+    const { receipent } = req.body;
+    Box.query({
+        where: {receipent: receipent},
+    }).fetch().then(box => {
+        if (box) {
+            Box
+            .where({receipent:receipent})
+            .save({updated_at: new Date()},{patch:true})
+            .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+            error: err})
+            );
+            str1 = '/collectparcel'
+        } else {
+            console.log('No Box found')
+            str1 = '/noparcelfound'
+        }
+        res.json(str1)
+    });
 }

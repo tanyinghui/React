@@ -9,6 +9,24 @@ import {
 
 } from '../constants/actionType';
 
+// Test with frontlayout button
+import {
+    DELIVER,
+    COLLECT
+} from '../constants/entity';
+
+export function deliver() {
+    return {
+        type: DELIVER
+    }
+}
+
+export function collect() {
+    return {
+        type: COLLECT
+    }
+}
+
 export function failure(error) {
     return {
         type: ENTITY_FAILURE,

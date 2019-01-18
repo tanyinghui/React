@@ -145,7 +145,7 @@ const styles = {
     }
 };
 
-class MainForm extends Component {
+class ReceipentForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -191,7 +191,7 @@ class MainForm extends Component {
                 <CardContent className={classes.content}>
                     <div>
                         <Typography variant="h6">
-                            Enter your mobile number.
+                            Enter your customer's mobile number.
                         </Typography>
                     </div>
                     <div>
@@ -255,19 +255,19 @@ const validateKeyIn = values => {
         }  
     });
 
-    if (values.deliverer && values.deliverer.length < 8) {
-        errors.deliverer = '(Mobile number must be at least 8 digits.)';
+    if (values.phone && values.phone.length < 8) {
+        errors.phone = '(Mobile number must be at least 8 digits.)';
     }
 
     return errors
 };
 
-MainForm.propTypes = {
+ReceipentForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired
 };
 
 export default reduxForm({
-    form: 'MainForm',
+    form: 'RecipientnForm',
     validate: validateKeyIn
-}) (withStyles(styles)(MainForm));
+}) (withStyles(styles)(ReceipentForm));

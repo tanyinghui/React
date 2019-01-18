@@ -5,7 +5,7 @@ import bookshelf from '../config/bookshelf';
  */
 class User extends bookshelf.Model {
     get tableName() {
-        return 'users';
+        return 'customer';
     }
 
     get hasTimestamps() {

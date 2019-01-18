@@ -1,18 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-// import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
-// import {blueGrey} from '@material-ui/core/colors';
 
 // Import custom components
 import store from './store/store';
-import {verifyToken} from './actions/tokenAction';
 import App from './containers/app/AppContainer';
 
 const mountNode = document.getElementById('root');
-
-// Used to log in if token is valid
-store.dispatch(verifyToken());
 
 const renderApp = (Component) => {
     ReactDOM.render(

@@ -1,10 +1,4 @@
-export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
-export const LOG_IN_FAILURE = 'LOG_IN_FAILURE';
-export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
-
-export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
-export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
-
+// create entity actions
 export const ENTITY_FAILURE = 'ENTITY_FAILURE';
 export const ENTITY_CREATE = 'ENTITY_CREATE';
 export const ENTITY_UPDATE = 'ENTITY_UPDATE';

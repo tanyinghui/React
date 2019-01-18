@@ -1,46 +1,57 @@
 import axios from 'axios';
-import {getToken} from './storageUtil'
 
-export function fetch(url, endpoint) {
-    return axios
-        .get(url + endpoint, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Bearer' + ' ' + getToken()
-            }
-        });
-}
-
-export function store(url, endpoint, data) {
+export function check(url, endpoint, data) {
     return axios
         .post(url + endpoint, data, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer' + ' ' + getToken()
+                // 'Authorization': 'Bearer' + ' ' + getToken()
             }
         });
 }
 
-export function update(url, endpoint, data) {
+export function checkBoxData(url, endpoint, data) {
     return axios
-        .put(url + endpoint, data, {
+        .post(url + endpoint, data, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer' + ' ' + getToken()
+                // 'Authorization': 'Bearer' + ' ' + getToken()
             }
         });
 }
 
-export function destroy(url, endpoint) {
+
+export function storeDeliverer(url, endpoint, data) {
     return axios
-        .delete(url + endpoint, {
+        .post(url + endpoint, data, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer' + ' ' + getToken()
+                // 'Authorization': 'Bearer' + ' ' + getToken()
+            }
+        });
+}
+
+export function storeReceipentA(url, endpoint, data) {
+    return axios
+        .post(url + endpoint, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                // 'Authorization': 'Bearer' + ' ' + getToken()
+            }
+        });
+}
+
+export function storeBoxReceipentA(url, endpoint, data) {
+    return axios
+        .post(url + endpoint, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                // 'Authorization': 'Bearer' + ' ' + getToken()
             }
         });
 }

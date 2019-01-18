@@ -1,24 +1,23 @@
-import {fetch, store, update, destroy} from '../utils/httpUtil';
-import {getPathParam, getQueryParam} from '../utils/serializeUtil';
+import { check, storeDeliverer, storeReceipentA, storeBoxReceipentA, checkBoxData} from '../utils/httpUtil';
 
 import {API_URL} from '../config/config';
 
-export function fetchEntity(entityName) {
-    return fetch(API_URL, entityName.toLowerCase());
+export function storeEntityPhone(entityName, data) {
+    return check(API_URL, entityName.toLowerCase(), data);
 }
 
-export function fetchEntityById(entityName, dataId) {
-    return fetch(API_URL, getPathParam(entityName.toLowerCase(), dataId));
+export function storeEntityDeliverer(entityName, data) {
+    return storeDeliverer(API_URL, entityName.toLowerCase(), data);
 }
 
-export function storeEntity(entityName, data) {
-    return store(API_URL, entityName.toLowerCase(), data);
+export function storeEntityReceipent(entityName, data) {
+    return storeReceipentA(API_URL, entityName.toLowerCase(), data);
 }
 
-export function updateEntity(entityName, data, dataId) {
-    return update(API_URL, getPathParam(entityName.toLowerCase(), dataId), data);
+export function storeEntityBoxReceipent(entityName, data) {
+    return storeBoxReceipentA(API_URL, entityName.toLowerCase(), data);
 }
 
-export function destroyEntity(entityName, dataId) {
-    return destroy(API_URL, getPathParam(entityName.toLowerCase(), dataId));
+export function checkBoxDataA(entityName, data) {
+    return checkBoxData(API_URL, entityName.toLowerCase(), data);
 }
