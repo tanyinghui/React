@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { CUSTOMER, DELIVERER } from '../../constants/entity';
 import * as crudAction from '../../actions/crudAction';
+import history from '../../utils/history';
 
 // Import custom components
 import MainForm from '../common/MainForm';
@@ -16,13 +17,13 @@ class DeliverLayout extends Component {
 
     submitForm(formProps) {
         this.props.actions.storePhone(CUSTOMER, formProps);
-        this.props.actions.storeDeliverer(DELIVERER, formProps);
-        var temp = formProps.deliverer;
-        localStorage.setItem('deliverer', temp);
+        this.props.actions.storeDeliverer(DELIVERER, formProps).then(data => {
+            localStorage.setItem('id', data.data.data.id);
+        });
+        history.push('/receipentform');
     }
 
     render() {
-
         return(
             <div>
                 <MainForm onSubmit={this.submitForm}/>

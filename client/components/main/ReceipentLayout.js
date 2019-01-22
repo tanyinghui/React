@@ -18,22 +18,19 @@ class RecipientLayout extends Component {
     }
 
     submitForm(formProps) {
-        var temp2 = [];
-        temp2 = localStorage.getItem('deliverer');
-        formProps.deliverer = temp2;
+        formProps.id = localStorage.getItem('id');
         this.props.actions.storePhone(CUSTOMER, formProps);
         this.props.actions.storeReceipent(RECEIPENT, formProps);
-        this.props.actions.storeBoxReceipent(BOXRECEIPENT, formProps);
-        history.push('/deliverparcel');
+        this.props.actions.storeBoxReceipent(BOXRECEIPENT, formProps).then(data => {
+            history.push(data.data);
+        });
     }
 
     render() {
 
         return(
             <div>
-                {/* <Link to={'/deliverparcel'}> */}
-                    <ReceipentForm onSubmit={this.submitForm}/>
-                {/* </Link> */}
+                <ReceipentForm onSubmit={this.submitForm}/>
             </div>
         )
     }

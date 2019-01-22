@@ -2,14 +2,8 @@ import HttpStatus from 'http-status-codes';
 import User from '../models/user.model';
 import Deliver from '../models/transaction.model';
 import Box from '../models/box_status.model'
+import knex from '../config/knex';
 
-/**
- * Store new customer into table "customer"
- *
- * @param {object} req
- * @param {object} res
- * @returns {*}
- */
 export function storePhone(req, res) {
     const {phone} = req.body;
 
@@ -37,7 +31,6 @@ export function check(req, res) {
             .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
             error: err})
             );
-
         } else {
             storePhone(req, res);
         }
@@ -46,9 +39,14 @@ export function check(req, res) {
 
 export function storeDeliverer(req, res) {
     const {deliverer} = req.body;
-
-    Deliver.forge({deliverer}, {hasTimestamps: true}).save()
-        .then(deliver => res.json({
+    Deliver.query(
+        {where: {deliverer:deliverer}}
+    ).fetch().then(() => {
+        Deliver
+        .forge()
+        .save({deliverer},{method:'insert'})
+        .then(deliver => 
+            res.json({
                 success: true,
                 data: deliver.toJSON()
             })
@@ -57,17 +55,17 @@ export function storeDeliverer(req, res) {
                 error: err,
             })
         );
+    })
 }
 
 export function storeReceipentA(req, res) {
-    const {receipent, deliverer} = req.body;
-
+    const {receipent, id} = req.body;
     Deliver.query({
-        where: {deliverer: deliverer},
+        where: {object_id: id},
     }).fetch().then(deliver => {
         if (deliver) {
             Deliver
-            .where({deliverer: deliverer})
+            .where({object_id: id})
             .save({receipent: receipent, updated_at: new Date()},{patch:true})
             .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
                 error: err})
@@ -79,30 +77,31 @@ export function storeReceipentA(req, res) {
 }
 
 export function storeBoxReceipentA(req, res) {
-    const {receipent} = req.body;
-
-    Box.query({
-        where: {receipent: receipent},
-    }).fetch().then(box => {
-        if (box) {
-            console.log('Box is found')
-        } else {
-            Box.forge({receipent}, {hasTimestamps: true}).save()
-                .then(box => res.json({
-                        success: true,
-                        data: box.toJSON()
-                    })
-                )
+    let path = '';
+    const {receipent, id} = req.body;
+    knex('box_status')
+    .where('object_id','')
+    .then(box => {
+        if (box.length > 0) {
+            path = '/deliverparcel';
+            knex('box_status').where({shelf_id: box[0].shelf_id})
+            .update({receipent: receipent, object_id: id, created_at: new Date(), updated_at: new Date()})
+            .then(res.json(path))
             .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
                     error: err,
                 })
             );
+        } else {
+            path = '/full';
+            res.json(path);
         }
     });
+    console.log('path');
+    console.log(path)
 }
 
 export function checkBoxData(req, res) {
-    let str1 = '';
+    let checkpath = '';
     const { receipent } = req.body;
     Box.query({
         where: {receipent: receipent},
@@ -114,11 +113,11 @@ export function checkBoxData(req, res) {
             .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
             error: err})
             );
-            str1 = '/collectparcel'
+            checkpath = '/collectparcel'
         } else {
             console.log('No Box found')
-            str1 = '/noparcelfound'
+            checkpath = '/noparcelfound'
         }
-        res.json(str1)
+        res.json(checkpath)
     });
 }
