@@ -1,7 +1,6 @@
 'use strict'; // cannot use undeclared variables 
 const path = require('path');
 const webpack = require('webpack');
-const env = process.env.NODE_ENV;
 
 /*
  * process.cwd() is used to determine the correct base directory.
@@ -13,7 +12,7 @@ const config = {
     context: path.resolve(CURRENT_WORKING_DIR, 'client'),
     entry: {
         app: [
-            './client/main.js', // entry point 
+            './main.js' //entry point of project
         ]
     },
     mode: 'production',
@@ -26,9 +25,13 @@ const config = {
                 options: {
                     babelrc: false,
                     presets: [
-                        '@bable/preset-env', 
+                        '@babel/preset-env', 
                         '@babel/preset-react'
                     ],
+                    cacheDirectory: true,
+                    // babel-loader enables cahing results 
+                    // in ./node_modules/.cache/babel-loader/
+                    // for faster rebuilds
                     plugins: [
                         '@babel/plugin-proposal-function-bind',
                         '@babel/plugin-proposal-class-properties'

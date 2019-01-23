@@ -5,13 +5,13 @@ import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
 import { Link } from 'react-router-dom';
-import defaultstyles from '../../styles/standardstyle';
+import standardstyle from '../../styles/standardstyle';
 
 const styles = {
-    card: defaultstyles.card,
-    content: defaultstyles.content,
-    savemebutton: defaultstyles.centeredbutton,
-    homebutton: defaultstyles.centeredbutton
+    card: standardstyle.card,
+    content: standardstyle.content,
+    savemebutton: standardstyle.centeredbutton,
+    homebutton: standardstyle.centeredbutton
 }
 
 class CollectParcel extends Component {
@@ -24,29 +24,29 @@ class CollectParcel extends Component {
         const { classes } = this.props;
         return (
             <div>
-            <Card className={classes.card}>
-                <CardContent className={classes.content}>
-                    <div className={classes.text}>
-                        <DoneIcon fontSize="large"/>
-                        <div>
-                            <Typography variant="h5">
-                                Perfect.
-                            </Typography>
+                <Card className={classes.card}>
+                    <CardContent className={classes.content}>
+                        <div className={classes.text}>
+                            <DoneIcon fontSize="large"/>
+                                <div>
+                                    <Typography variant="h5">
+                                        Perfect.
+                                    </Typography>
+                                </div>
+                                <div>
+                                    <Typography variant="h6">
+                                        Collect your parcel below.
+                                    </Typography>
+                                </div>
                         </div>
-                        <div>
-                            <Typography variant="h6">
-                                Collect your parcel below.
-                            </Typography>
-                        </div>
-                    </div>
-                    <Link to={'/'}>
-                        <Button variant="contained" className={classes.homebutton}>
-                            Home
-                        </Button>
-                    </Link>
-                </CardContent>
-            </Card>  
-        </div>
+                        <Link to={'/'}>
+                            <Button variant="contained" className={classes.homebutton}>
+                                Home
+                            </Button>
+                        </Link>
+                    </CardContent>
+                </Card>  
+            </div>
         );
     }
 }

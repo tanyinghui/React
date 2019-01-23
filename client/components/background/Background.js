@@ -8,7 +8,6 @@ const styles = {
 class Background extends Component {
 
     render() {
-        const { classes } = this.props;
 
         return(
             <div>

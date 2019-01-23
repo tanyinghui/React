@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 
 // Import custom components
 import store from './store/store';
-import App from './containers/app/AppContainer';
+import App from './containers/AppContainer';
 
 const mountNode = document.getElementById('root');
 
@@ -21,10 +21,10 @@ renderApp(App);
 
 // Webpack Hot Module Replacement API
 if (module.hot) {
-    module.hot.accept('./containers/app/AppContainer', () => {
+    module.hot.accept('./containers/AppContainer', () => {
         // if you are using harmony modules ({modules:false})
         renderApp(App);
         // in all other cases - re-require App manually
-        renderApp(require('./containers/app/AppContainer'))
+        renderApp(require('./containers/AppContainer'))
     })
 }

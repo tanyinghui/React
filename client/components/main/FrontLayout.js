@@ -6,16 +6,14 @@ import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import defaultstyles from '../../styles/standardstyle';
-
-// Import custom components
+import standardstyle from '../../styles/standardstyle';
 
 const styles = {
-    card: defaultstyles.card,
-    content: defaultstyles.content,
-    title: defaultstyles.title,
-    deliverbutton: defaultstyles.centeredbutton,
-    collectbutton: defaultstyles.centeredbutton,
+    card: standardstyle.card,
+    content: standardstyle.content,
+    title: standardstyle.title,
+    deliverbutton: standardstyle.centeredbutton,
+    collectbutton: standardstyle.centeredbutton,
 };
 
 class FrontLayout extends Component {

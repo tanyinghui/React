@@ -1,4 +1,4 @@
-const styles = {
+const standardstyle = {
     card: {
         padding: 2,
         width: 450,
@@ -28,4 +28,5 @@ const styles = {
 
     }
 };
-export default styles;
+
+export default standardstyle;

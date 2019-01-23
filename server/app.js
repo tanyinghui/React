@@ -2,7 +2,6 @@ import path from 'path';
 import app from './config/express';
 import routes from './routes/index.route';
 import * as errorHandler from './middlewares/errorHandler';
-import joiErrorHandler from './middlewares/joiErrorHandler';
 
 // enable webpack hot module replacement in development mode
 import webpack from 'webpack';
@@ -24,9 +23,6 @@ app.use('/api', routes);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
-
-// Joi Error Handler
-app.use(joiErrorHandler);
 
 // Error Handler
 app.use(errorHandler.notFoundErrorHandler);

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as crudAction from '../../actions/crudAction';
-import { COLLECT } from '../../constants/entity';
-import history from '../../utils/history';
 
 // Import custom components
 import MainForm from '../common/MainForm';
+import * as crudAction from '../../actions/crudAction';
+import { COLLECT } from '../../constants/actionType';
+import history from '../../utils/history';
 
 class CollectLayout extends Component {
 
@@ -17,18 +17,13 @@ class CollectLayout extends Component {
 
     submitForm(formProps) {
         this.props.actions.checkdata(COLLECT, formProps).then(data => {
-            // console.log(data)
             history.push(data.data)
         });
     }
 
     render() {
         return(
-            <div>
-                <MainForm 
-                    onSubmit={this.submitForm}
-                    errorMessage={this.props.errorMessage}/>
-            </div>
+            <MainForm onSubmit={this.submitForm} errorMessage={this.props.errorMessage}/>
         )
     }
 }

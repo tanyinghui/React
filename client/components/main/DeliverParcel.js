@@ -4,14 +4,15 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import defaultstyles from '../../styles/standardstyle';
+import standardstyle from '../../styles/standardstyle';
 
 const styles = {
-    card: defaultstyles.card,
-    content: defaultstyles.content,
-    continuebutton: defaultstyles.centeredbutton,
-    text: defaultstyles.text,
+    card: standardstyle.card,
+    content: standardstyle.content,
+    continuebutton: standardstyle.centeredbutton,
+    text: standardstyle.text,
 }
+
 class DeliverParcel extends Component {
     
     constructor(props) {

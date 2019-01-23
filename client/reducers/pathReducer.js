@@ -1,4 +1,4 @@
-import { DELIVER, COLLECT, NO_COLLECT, NEW_USER } from '../constants/entity';
+import { DELIVER, COLLECT, NO_COLLECT, NEW_USER } from '../constants/actionType';
 
 var initialState = {
     intention: null,

@@ -3,7 +3,7 @@ import * as httpService from '../services/httpService';
 
 export function storePhone(entity, data) {
     return function (dispatch) {
-        return httpService.storeEntityPhone(entity, data)
+        return httpService.data(entity, data)
         .catch((error) => {
             dispatch(commonAction.failure(error));
         });
@@ -13,7 +13,7 @@ export function storePhone(entity, data) {
 export function storeDeliverer(entity, data) {
     data.deliverer = data.phone;
     return function (dispatch) {
-        return httpService.storeEntityDeliverer(entity, data)
+        return httpService.data(entity, data)
         .catch((error) => {
             dispatch(commonAction.failure(error));
         });
@@ -23,7 +23,7 @@ export function storeDeliverer(entity, data) {
 export function storeReceipent(entity, data) {
     data.receipent = data.phone;
     return function (dispatch) {
-        return httpService.storeEntityReceipent(entity, data)
+        return httpService.data(entity, data)
         .catch((error) => {
                 dispatch(commonAction.failure(error));
             });
@@ -32,7 +32,7 @@ export function storeReceipent(entity, data) {
 
 export function storeBoxReceipent(entity, data) {
     return function (dispatch) {
-        return httpService.storeEntityBoxReceipent(entity, data)
+        return httpService.data(entity, data)
         .catch((error) => {
                 dispatch(commonAction.failure(error));
             });
@@ -42,7 +42,7 @@ export function storeBoxReceipent(entity, data) {
 export function checkdata(entity, data) {
     data.receipent = data.phone
     return function (dispatch) {
-        return httpService.checkBoxDataA(entity, data)
+        return httpService.data(entity, data)
         .catch((error) => {
                 dispatch(commonAction.failure(error));
             });

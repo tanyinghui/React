@@ -5,13 +5,13 @@ import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
 import { Link } from 'react-router-dom';
-import defaultstyles from '../../styles/standardstyle';
+import standardstyle from '../../styles/standardstyle';
 
 const styles = {
-    card: defaultstyles.card,
-    content: defaultstyles.content,
-    deliverbutton: defaultstyles.centeredbutton,
-    donebutton: defaultstyles.centeredbutton,    
+    card: standardstyle.card,
+    content: standardstyle.content,
+    deliverbutton: standardstyle.centeredbutton,
+    donebutton: standardstyle.centeredbutton,    
 }
 class ParcelPath extends Component {
     

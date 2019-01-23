@@ -1,11 +1,11 @@
 import express from 'express';
-import * as userCtrl from '../controllers/user.controller';
+import * as boxCtrl from '../controllers/boxstatus.controller';
 
 const router = express.Router();
 
 router.route('/')
     .post((req, res) => {  
-        userCtrl.checkBoxData(req, res);
+        boxCtrl.checkBoxData(req, res);
     })
 
 export default router;

@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form';
 import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
 import Typography from '@material-ui/core/Typography';
-
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import BackspaceIcon from '@material-ui/icons/Backspace';
@@ -12,137 +11,24 @@ import { Card, CardContent, InputAdornment } from '@material-ui/core'
 
 // Import custom component
 import renderText from './renderText';
+import formstyle from '../../styles/formstyle';
 
 const styles = {
-    card: {
-        padding: 2,
-        width: 450,
-        height: 380,
-        position: 'absolute',
-        top: '40%',
-        left: 0,
-        right: 0,
-        margin: 'auto',
-        opacity: 0.85
-    },
-    content: {
-        textAlign: 'center',
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        margin: 'auto',
-    },
-    textField: {
-        width: 400,
-    },
-    button1: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 150,
-        left: -146,
-        right: 0,
-        margin: 'auto',
-    },
-    button2: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 150,
-        left: 0,
-        right: 0,
-        margin: 'auto',
-    },
-    button3: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 150,
-        left: 146,
-        right: 0,
-        margin: 'auto',
-    },
-    button4: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 200,
-        left: -146,
-        right: 0,
-        margin: 'auto',
-    },
-    button5: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 200,
-        left: 0,
-        right: 0,
-        margin: 'auto',
-    },
-    button6: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 200,
-        left: 146,
-        right: 0,
-        margin: 'auto',
-    },
-    button7: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 250,
-        left: -146,
-        right: 0,
-        margin: 'auto',
-    },
-    button8: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 250,
-        left: 0,
-        right: 0,
-        margin: 'auto',
-    },
-    button9: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 250,
-        left: 146,
-        right: 0,
-        margin: 'auto',
-    },
-    button0: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 300,
-        left: 0,
-        right: 0,
-        margin: 'auto',
-    },
-    buttonPlus: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 300,
-        left: -146,
-        right: 0,
-        margin: 'auto',
-    },
-    buttonDel: {
-        width: 40,
-        height: 40,
-        position: 'absolute',
-        top: 300,
-        left: 146,
-        right: 0,
-        margin: 'auto',
-    }
+    card: formstyle.card,
+    content: formstyle.content,
+    textField: formstyle.textField,
+    button1: formstyle.button1,
+    button2: formstyle.button2,
+    button3: formstyle.button3,
+    button4: formstyle.button4,
+    button5: formstyle.button5,
+    button6: formstyle.button6,
+    button7: formstyle.button7,
+    button8: formstyle.button8,
+    button9: formstyle.button9,
+    button0: formstyle.button0,
+    buttonPlus: formstyle.buttonPlus,
+    buttonDel: formstyle.buttonDel
 };
 
 class MainForm extends Component {
@@ -158,7 +44,6 @@ class MainForm extends Component {
     };
 
     handleClick = (e) => {
-        // alert(e.currentTarget.value);
         var value = e.currentTarget.value;
         this.setState({value: this.state.value + value}, () => {
             this.props.change("phone", this.state.value);
@@ -217,7 +102,7 @@ class MainForm extends Component {
                             />
                         </form>
                         <div>
-                            <Button variant="contained" className={classes.button1} value="1"  onClick = {this.handleClick} >1</Button>
+                            <Button variant="contained" className={classes.button1} onClick = {this.handleClick} value="1">1</Button>
                             <Button variant="contained" className={classes.button2} onClick = {this.handleClick} value="2">2</Button> 
                             <Button variant="contained" className={classes.button3} onClick = {this.handleClick} value="3">3</Button>
                             <Button variant="contained" className={classes.button4} onClick = {this.handleClick} value="4">4</Button>
