@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+
+// Import custom components
 import Background from '../components/background/Background';
 import MainRouter from '../routers/MainRouter';
 

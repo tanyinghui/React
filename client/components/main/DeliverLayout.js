@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { CUSTOMER, DELIVERER } from '../../constants/entity';
-import * as crudAction from '../../actions/crudAction';
-import history from '../../utils/history';
 
 // Import custom components
 import MainForm from '../common/MainForm';
+import { CUSTOMER, DELIVERER } from '../../constants/entity';
+import * as crudAction from '../../actions/crudAction';
+import * as commonAction from '../../actions/commonAction';
+import history from '../../utils/history';
 
 class DeliverLayout extends Component {
 
@@ -18,16 +19,15 @@ class DeliverLayout extends Component {
     submitForm(formProps) {
         this.props.actions.storePhone(CUSTOMER, formProps);
         this.props.actions.storeDeliverer(DELIVERER, formProps).then(data => {
-            localStorage.setItem('id', data.data.data.id);
+            let id = data.data.data.id;
+            this.props.save.deliver(id);
         });
         history.push('/receipentform');
     }
 
     render() {
         return(
-            <div>
-                <MainForm onSubmit={this.submitForm}/>
-            </div>
+            <MainForm onSubmit={this.submitForm}/>
         )
     }
 }
@@ -37,7 +37,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(Object.assign({}, crudAction), dispatch)
+    actions: bindActionCreators(Object.assign({}, crudAction), dispatch),
+    save: bindActionCreators(Object.assign({}, commonAction), dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeliverLayout);

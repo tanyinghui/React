@@ -1,5 +1,5 @@
 /**
- * Up users table.
+ * Up table.
  *
  * @param  {object} knex
  *
@@ -50,7 +50,7 @@ exports.up = function(knex, Promise) {
 
 
 /**
- * Drop users table.
+ * Drop table.
  *
  * @param  {object} knex
  *

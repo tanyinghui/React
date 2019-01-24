@@ -6,7 +6,10 @@ import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+// Import custom components
 import standardstyle from '../../styles/standardstyle';
+import * as commonAction from '../../actions/commonAction';
 
 const styles = {
     card: standardstyle.card,
@@ -23,11 +26,11 @@ class FrontLayout extends Component {
     };
 
     deliver = () => {
-        this.props.dispatch({ type: 'DELIVER' });
+        this.props.dispatch(commonAction.deliver());
     }
 
     collect = () => {
-        this.props.dispatch({ type: 'COLLECT' });
+        this.props.dispatch(commonAction.collect());
     }
     
     render() {
@@ -70,6 +73,5 @@ FrontLayout.propTypes = {
 const mapStateToProps = state => ({
     path: state.path,
 });
-
 
 export default connect(mapStateToProps)(withStyles(styles)(FrontLayout));

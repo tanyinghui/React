@@ -39,13 +39,3 @@ export function storeReceipent(req, res) {
         }
     });
 }
-
-// export function update(req, res) {
-//     const { receipent } = req.body;
-//     Deliver.query({
-//         where: {receipent: receipent},
-//     }).fetch().save({activity: 'Collected', updated_at: new Date()}, {patch:true})
-//     .catch(err => res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-//         error: err})
-//     );
-// }

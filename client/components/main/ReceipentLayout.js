@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { RECEIPENT, BOXRECEIPENT, CUSTOMER } from '../../constants/entity';
-import * as crudAction from '../../actions/crudAction';
-import history from '../../utils/history';
-  
 
 // Import custom components
+import store from '../../store/store';
+import history from '../../utils/history';
 import ReceipentForm from '../common/ReceipentForm';
+import * as crudAction from '../../actions/crudAction';
+import { RECEIPENT, BOXRECEIPENT, CUSTOMER } from '../../constants/entity';
 
 class RecipientLayout extends Component {
 
@@ -18,7 +17,7 @@ class RecipientLayout extends Component {
     }
 
     submitForm(formProps) {
-        formProps.id = localStorage.getItem('id');
+        formProps.id = store.getState().path.id;
         this.props.actions.storePhone(CUSTOMER, formProps);
         this.props.actions.storeReceipent(RECEIPENT, formProps);
         this.props.actions.storeBoxReceipent(BOXRECEIPENT, formProps).then(data => {
@@ -29,9 +28,7 @@ class RecipientLayout extends Component {
     render() {
 
         return(
-            <div>
-                <ReceipentForm onSubmit={this.submitForm}/>
-            </div>
+            <ReceipentForm onSubmit={this.submitForm}/>
         )
     }
 }

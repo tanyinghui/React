@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form';
 import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
 import Typography from '@material-ui/core/Typography';
-
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import BackspaceIcon from '@material-ui/icons/Backspace';
@@ -154,6 +153,6 @@ ReceipentForm.propTypes = {
 };
 
 export default reduxForm({
-    form: 'RecipientnForm',
+    form: 'ReceipentForm',
     validate: validateKeyIn
 }) (withStyles(styles)(ReceipentForm));

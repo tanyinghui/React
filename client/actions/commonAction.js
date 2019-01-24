@@ -4,9 +4,10 @@ import {
     COLLECT
 } from '../constants/actionType';
 
-export function deliver() {
+export function deliver(id) {
     return {
-        type: DELIVER
+        type: DELIVER,
+        id: id
     }
 }
 

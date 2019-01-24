@@ -5,6 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent } from '@material-ui/core';
 import ErrorIcon from '@material-ui/icons/Error';
 import { Link } from 'react-router-dom';
+
+// Import custom component
 import defaultstyles from '../../styles/standardstyle';
 
 const styles = {
