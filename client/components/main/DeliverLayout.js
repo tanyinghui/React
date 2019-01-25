@@ -20,7 +20,8 @@ class DeliverLayout extends Component {
         this.props.actions.storePhone(CUSTOMER, formProps);
         this.props.actions.storeDeliverer(DELIVERER, formProps).then(data => {
             let id = data.data.data.id;
-            this.props.save.deliver(id);
+            let deliverer = data.data.data.deliverer;
+            this.props.save.deliver(id, deliverer);
         });
         history.push('/receipentform');
     }

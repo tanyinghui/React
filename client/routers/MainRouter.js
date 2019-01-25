@@ -29,7 +29,7 @@ const MainRouter = () => (
             <Route path="/deliverparcel" component={DeliverParcel}/>
             <Route path="/parcelpath" component={ParcelPath}/>
             <Route path="/full" component={FullShelf}/>
-            <Route path="*" component={NotFound} />
+            <Route path="*" component={NotFound}/>
         </Switch>
     </ConnectedRouter>
 );

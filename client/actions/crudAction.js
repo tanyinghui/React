@@ -20,6 +20,15 @@ export function storeDeliverer(entity, data) {
     };
 }
 
+export function storeAnother(entity, data) {
+    return function (dispatch) {
+        return httpService.data(entity, data)
+        .catch((error) => {
+            dispatch(commonAction.failure(error));
+        });
+    };
+}
+
 export function storeReceipent(entity, data) {
     data.receipent = data.phone;
     return function (dispatch) {

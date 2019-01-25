@@ -5,9 +5,15 @@ import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent } from '@material-ui/core';
 import DoneIcon from '@material-ui/icons/Done';
 import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 // Import custom components
 import standardstyle from '../../styles/standardstyle';
+import store from '../../store/store';
+import { DELIVERER } from '../../constants/entity';
+import * as crudAction from '../../actions/crudAction';
+import * as commonAction from '../../actions/commonAction';
 
 const styles = {
     card: standardstyle.card,
@@ -15,11 +21,22 @@ const styles = {
     deliverbutton: standardstyle.centeredbutton,
     donebutton: standardstyle.centeredbutton,    
 }
+
 class ParcelPath extends Component {
     
     constructor(props) {
         super(props);
+        this.deliveranother = this.deliveranother.bind(this);
     };
+
+    deliveranother(data) {
+        data.deliverer = store.getState().path.deliverer;
+        this.props.actions.storeAnother(DELIVERER, data).then(data => {
+            let id = data.data.data.id;
+            let deliverer = data.data.data.deliverer;
+            this.props.save.deliver(id, deliverer);
+        });
+    }
     
     render() {
         const { classes } = this.props;
@@ -41,8 +58,8 @@ class ParcelPath extends Component {
                             </Typography>
                         </div>
                         <div>
-                            <Link to={'/deliverparcel'}>
-                                <Button variant="contained" className={classes.deliverbutton}>
+                            <Link to={'/receipentform'}>
+                                <Button variant="contained" className={classes.deliverbutton} onClick={this.deliveranother}>
                                     Deliver another
                                 </Button>
                             </Link>
@@ -61,4 +78,13 @@ class ParcelPath extends Component {
     }
 }
 
-export default withStyles(styles)(ParcelPath)
+const mapStateToProps = state => ({
+    path: state.path,
+});
+
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(Object.assign({}, crudAction), dispatch),
+    save: bindActionCreators(Object.assign({}, commonAction), dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ParcelPath));

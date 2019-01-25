@@ -3,7 +3,6 @@ import { DELIVER, COLLECT, NEW_USER } from '../constants/actionType';
 var initialState = {
     intention: null,
     newCustomer: false,
-    previouspage: null,
     parcel_count: 0,
 };
 
@@ -17,7 +16,8 @@ export default function (state, action) {
             return Object.assign({}, state, {
                 intention: 'Deliver',
                 id: action.id,
-                parcel_count: 1
+                parcel_count: 1,
+                deliverer: action.deliverer
             });
         case COLLECT:
             return Object.assign({}, state, {
