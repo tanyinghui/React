@@ -8,10 +8,11 @@ import { Link } from 'react-router-dom';
 
 // Import custom component
 import standardstyle from '../../styles/standardstyle';
+import formstyle from '../../styles/formstyle';
 
 const styles = {
-    card: standardstyle.card,
-    content: standardstyle.content,
+    card: formstyle.card,
+    content: formstyle.content,
     savemebutton: standardstyle.centeredbutton,
     homebutton: standardstyle.centeredbutton
 }

@@ -9,11 +9,12 @@ import { connect } from 'react-redux';
 
 // Import custom components
 import standardstyle from '../../styles/standardstyle';
+import formstyle from '../../styles/formstyle';
 import * as commonAction from '../../actions/commonAction';
 
 const styles = {
-    card: standardstyle.card,
-    content: standardstyle.content,
+    card: formstyle.card,
+    content: formstyle.content,
     title: standardstyle.title,
     deliverbutton: standardstyle.centeredbutton,
     collectbutton: standardstyle.centeredbutton,

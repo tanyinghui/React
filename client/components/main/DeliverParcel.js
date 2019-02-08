@@ -7,12 +7,13 @@ import { Link } from 'react-router-dom';
 
 // Import custom components
 import standardstyle from '../../styles/standardstyle';
+import formstyle from '../../styles/formstyle';
 
 const styles = {
-    card: standardstyle.card,
-    content: standardstyle.content,
+    card: formstyle.card,
+    content: formstyle.content,
     continuebutton: standardstyle.centeredbutton,
-    text: standardstyle.text,
+    text: standardstyle.title,
 }
 
 class DeliverParcel extends Component {

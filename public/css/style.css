@@ -2,6 +2,15 @@ body {
     margin: 0;
     background-color: white;
 }
+.videobody {
+    text-align: center;
+    position: fixed;
+    font-size: 2rem;
+    bottom: 45%;
+    width: 100%;
+}
+
+
 
 body, html, #app, #app > div {
     height: 100%;

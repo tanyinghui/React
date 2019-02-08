@@ -10,14 +10,15 @@ import { connect } from 'react-redux';
 
 // Import custom components
 import standardstyle from '../../styles/standardstyle';
+import formstyle from '../../styles/formstyle';
 import store from '../../store/store';
 import { DELIVERER } from '../../constants/entity';
 import * as crudAction from '../../actions/crudAction';
 import * as commonAction from '../../actions/commonAction';
 
 const styles = {
-    card: standardstyle.card,
-    content: standardstyle.content,
+    card: formstyle.card,
+    content: formstyle.content,
     deliverbutton: standardstyle.centeredbutton,
     donebutton: standardstyle.centeredbutton,    
 }

@@ -7,13 +7,14 @@ import ErrorIcon from '@material-ui/icons/Error';
 import { Link } from 'react-router-dom';
 
 // Import custom component
-import defaultstyles from '../../styles/standardstyle';
+import standardstyle from '../../styles/standardstyle';
+import formstyle from '../../styles/formstyle';
 
 const styles = {
-    card: defaultstyles.card,
-    content: defaultstyles.content,
-    savemebutton: defaultstyles.centeredbutton,
-    homebutton: defaultstyles.centeredbutton
+    card: formstyle.card,
+    content: formstyle.content,
+    savemebutton: standardstyle.centeredbutton,
+    homebutton: standardstyle.centeredbutton
 }
 
 class CollectParcel extends Component {

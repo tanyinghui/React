@@ -39,6 +39,12 @@ const config = {
                         '@babel/plugin-proposal-class-properties'
                     ]
                 }
+            }, {
+                test: /\.html$/,
+                loader: 'html-loader?attrs[]=video:src'
+            }, {
+                test: /\.mp4$/,
+                loader: 'url-loader?limit=100000&mimetype=video/mp4'
             }
         ]
     },

@@ -16,6 +16,7 @@ import DeliverParcel from '../components/main/DeliverParcel';
 import ParcelPath from '../components/main/ParcelPath';
 import NoParcelFound from '../components/error/NoParcelFound';
 import FullShelf from '../components/error/FullShelf';
+import Dashboard from '../components/dashboard/ControlBoard';
 
 const MainRouter = () => (
      <ConnectedRouter history={history}>
@@ -29,6 +30,7 @@ const MainRouter = () => (
             <Route path="/deliverparcel" component={DeliverParcel}/>
             <Route path="/parcelpath" component={ParcelPath}/>
             <Route path="/full" component={FullShelf}/>
+            <Route path="/dashboard" component={Dashboard}/>
             <Route path="*" component={NotFound}/>
         </Switch>
     </ConnectedRouter>
