@@ -1,0 +1,24 @@
+export const MACHINEURL = 'controller-host';
+// Commands
+export const HOME = '/home';
+export const D1OPEN = '/door1/open';
+export const D1CLOSE = '/door1/close';
+export const D1STATUS = '/door1/status';
+export const D2OPEN = '/door2/open';
+export const D2CLOSE = '/door2/close';
+export const D2STATUS = '/door2/status';
+export const BELT_FORWARD = '/belts/forward';
+export const BELT_BACKWARD = '/belts/backward';
+export const ARM_EXTEND = '/arm/extend';
+export const ARM_RETRACT = '/arm/retract';
+export const ARM_STATUS = '/arm/status';
+export const LIFT_UP = '/lift/up';
+export const LIFT_DOWN = '/lift/down';
+export const LIFT_STATUS = '/lift/status';
+export const ALL_STATUS = '/all-status';
+export const LOCK = '/lock';
+export const UNLOCK = '/unlock';
+export const RESET = '/reset';
+export const HALT = '/halt';
+export const UNSAFE = '/unsafe';
+export const SAFE = '/safe';

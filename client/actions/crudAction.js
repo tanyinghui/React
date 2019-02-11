@@ -1,6 +1,6 @@
 import * as commonAction from './commonAction';
 import * as httpService from '../services/httpService';
-import { MACHINEURL } from '../constants/entity.js'
+import { MACHINEURL } from '../constants/machine'
 
 
 export function machineControl(entity, data, url = MACHINEURL) {
@@ -69,3 +69,4 @@ export function checkdata(entity, data) {
             });
     };
 }
+
